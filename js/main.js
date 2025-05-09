@@ -3,6 +3,7 @@ window.onload = () => {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
       .register("./sw.js")
+
       .then(() => console.log("Service Worker registered successfully."))
       .catch((error) =>
         console.error("Service Worker registration failed:", error)
@@ -53,3 +54,33 @@ function testNotification() {
     });
   }
 }
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAWUgzFHiP6Wrsw1ZOfcaXdL0F1fDHxjGU",
+  authDomain: "pwa-test-e2b30.firebaseapp.com",
+  projectId: "pwa-test-e2b30",
+  storageBucket: "pwa-test-e2b30.firebasestorage.app",
+  messagingSenderId: "120115123536",
+  appId: "1:120115123536:web:dc1ca1fdf2f807755c8855",
+  measurementId: "G-7R9TTJ9R95",
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const messaging = firebase.messaging();
+
+messaging
+  .getToken({
+    vapidKey:
+      "BFG3Z9yml-raBL_j5QuHquSoDLfyrPKqOA5OMoDLBKsnBCx_hJGVIDIaR7nuhkBcEG74YhJjZOZV_qGkuM7GsoI",
+  })
+  .then((currentToken) => {
+    if (currentToken) {
+      console.log("Token urządzenia:", currentToken);
+    } else {
+      console.warn("Brak tokena. Poproś o zgodę.");
+    }
+  })
+  .catch((err) => {
+    console.error("Błąd przy pobieraniu tokena:", err);
+  });
