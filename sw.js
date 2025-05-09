@@ -43,4 +43,33 @@ self.addEventListener("activate", (event) => {
       );
     })
   );
+  self.clients.claim();
+});
+
+importScripts(
+  "https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"
+);
+importScripts(
+  "https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging-compat.js"
+);
+
+firebase.initializeApp({
+  apiKey: "AIzaSyAWUgzFHiP6Wrsw1ZOfcaXdL0F1fDHxjGU",
+  authDomain: "pwa-test-e2b30.firebaseapp.com",
+  projectId: "pwa-test-e2b30",
+  storageBucket: "pwa-test-e2b30.firebasestorage.app",
+  messagingSenderId: "120115123536",
+  appId: "1:120115123536:web:dc1ca1fdf2f807755c8855",
+  measurementId: "G-7R9TTJ9R95",
+});
+
+const messaging = firebase.messaging();
+
+// Obsługa push gdy aplikacja jest zamknięta
+messaging.onBackgroundMessage((payload) => {
+  console.log("Otrzymano powiadomienie (w tle):", payload);
+  self.registration.showNotification(payload.notification.title, {
+    body: payload.notification.body,
+    icon: "images/manifest-icon-192.maskable.png",
+  });
 });

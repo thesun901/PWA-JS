@@ -1,11 +1,11 @@
 {
   "dependencies": {
+    "firebase": "^11.7.1",
     "pwa-asset-generator": "^8.0.4"
   },
   "name": "pwa",
   "version": "1.0.0",
   "main": "js/main.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
