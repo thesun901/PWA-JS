@@ -34,7 +34,7 @@ window.onload = () => {
     };
   }
 
-  if ("Notification" in window && "serviceWorker" in navigator) {
+  if ("Notification" in window) {
     Notification.requestPermission().then((permission) => {
       if (permission === "granted") {
         console.log("Powiadomienia włączone!");
@@ -68,21 +68,29 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-
 const messaging = firebase.messaging();
 
-messaging
-  .getToken({
-    vapidKey:
-      "BFG3Z9yml-raBL_j5QuHquSoDLfyrPKqOA5OMoDLBKsnBCx_hJGVIDIaR7nuhkBcEG74YhJjZOZV_qGkuM7GsoI",
-  })
-  .then((currentToken) => {
-    if (currentToken) {
-      console.log("Token urządzenia:", currentToken);
-    } else {
-      console.warn("Brak tokena. Poproś o zgodę.");
-    }
-  })
-  .catch((err) => {
-    console.error("Błąd przy pobieraniu tokena:", err);
-  });
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("./sw.js")
+    .then((registration) => {
+      console.log("Service Worker registered successfully:", registration);
+
+      messaging.useServiceWorker(registration);
+
+      return messaging.getToken({
+        vapidKey:
+          "BFG3Z9yml-raBL_j5QuHquSoDLfyrPKqOA5OMoDLBKsnBCx_hJGVIDIaR7nuhkBcEG74YhJjZOZV_qGkuM7GsoI",
+      });
+    })
+    .then((currentToken) => {
+      if (currentToken) {
+        console.log("Token urządzenia:", currentToken);
+      } else {
+        console.warn("Brak tokena. Poproś o zgodę.");
+      }
+    })
+    .catch((error) => {
+      console.error("Błąd rejestracji SW lub tokena:", error);
+    });
+}

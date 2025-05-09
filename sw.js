@@ -1,4 +1,4 @@
-const cacheName = "piac-pwa-v4";
+const cacheName = "piac-pwa-v5";
 const filesToCache = ["/", "/index.html", "/style.css"];
 self.addEventListener("install", (event) => {
   event.waitUntil(
