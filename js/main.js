@@ -76,8 +76,6 @@ if ("serviceWorker" in navigator) {
     .then((registration) => {
       console.log("Service Worker registered successfully:", registration);
 
-      messaging.useServiceWorker(registration);
-
       return messaging.getToken({
         vapidKey:
           "BFG3Z9yml-raBL_j5QuHquSoDLfyrPKqOA5OMoDLBKsnBCx_hJGVIDIaR7nuhkBcEG74YhJjZOZV_qGkuM7GsoI",
