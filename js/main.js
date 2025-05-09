@@ -10,8 +10,6 @@ window.onload = () => {
       );
   }
 
-  testNotification();
-
   const modal = document.getElementById("image-modal");
   const modalImg = document.getElementById("modal-img");
   const modalClose = document.getElementById("modal-close");
@@ -24,13 +22,17 @@ window.onload = () => {
     });
   });
 
-  modalClose.onclick = () => {
-    modal.style.display = "none";
-  };
+  if (modalClose) {
+    modalClose.onclick = () => {
+      modal.style.display = "none";
+    };
+  }
 
-  modal.onclick = (e) => {
-    if (e.target === modal) modal.style.display = "none";
-  };
+  if (modal) {
+    modal.onclick = (e) => {
+      if (e.target === modal) modal.style.display = "none";
+    };
+  }
 
   if ("Notification" in window && "serviceWorker" in navigator) {
     Notification.requestPermission().then((permission) => {
