@@ -45,8 +45,8 @@ function testNotification() {
     navigator.serviceWorker.getRegistration().then((reg) => {
       reg.showNotification("Elek Żelek mówi hej 👋", {
         body: "To jest testowe powiadomienie z PWA!",
-        icon: "images/pwa-icon-192.png",
-        badge: "images/pwa-icon-128.png",
+        icon: "images/manifest-icon-192.maskable.png",
+        badge: "images/manifest-icon-192.maskable.png",
       });
     });
   }
