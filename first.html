@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elek Żelek - Pierwsze Arty</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="js/menu.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">Elek Żelek</div>
+        <button class="burger" id="burger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="first.html">Pierwsze Arty</a></li>
+          <li><a href="current.html">Obecny Art</a></li>
+          <li><a href="about.html">O Eleku</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="container">
+      <main>
+        <h1 class="title">Pierwsze szkice Eleka Żelka</h1>
+        <p>
+          Tak wyglądały pierwsze szkice Eleka Żelka. Zobacz jak zmieniał się na
+          przestrzeni lat (tak naprawdę to kilku tygodni)! Elek Żelek mógł być
+          Żelkiem lub meduzą, ale ostatecznie zdecydowaliśmy się na meduzę.
+        </p>
+
+        <img src="images/old1.png" alt="Stary concept art 1" />
+        <img src="images/old2.jpg" alt="Stary concept art 2" />
+      </main>
+    </div>
+    <div id="image-modal" class="modal">
+      <span class="modal-close" id="modal-close">&times;</span>
+      <img class="modal-content" id="modal-img" />
+    </div>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
